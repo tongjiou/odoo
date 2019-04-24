@@ -487,7 +487,7 @@ var LineRenderer = Widget.extend(FieldManagerMixin, {
         }
         return this.model.makeRecord('account.bank.statement.line', [field], {
             partner_id: {
-                domain: [["parent_id", "=", false], "|", ["customer", "=", true], ["supplier", "=", true]],
+                domain: ["|", ["is_company", "=", true], ["parent_id", "=", false], "|", ["customer", "=", true], ["supplier", "=", true]],
                 options: {
                     no_open: true
                 }
@@ -526,7 +526,10 @@ var LineRenderer = Widget.extend(FieldManagerMixin, {
             type: 'float',
             name: 'amount',
         }], {
-            account_id: {string: _t("Account")},
+            account_id: {
+                string: _t("Account"),
+                domain: [['deprecated', '=', false]],
+            },
             label: {string: _t("Label")},
             amount: {string: _t("Account")}
         }).then(function (recordID) {
