@@ -1,6 +1,9 @@
 from odoo.addons.account.tests.account_test_classes import AccountingTestCase
+from odoo.tests import tagged
 from odoo.exceptions import Warning
 
+
+@tagged('post_install', '-at_install')
 class TestAccountSupplierInvoice(AccountingTestCase):
 
     def test_supplier_invoice(self):
@@ -123,7 +126,6 @@ class TestAccountSupplierInvoice(AccountingTestCase):
 
         invoice_id = self.env['account.invoice'].create({
             'name': 'invoice test refund',
-            'reference_type': 'none',
             'partner_id': self.env.ref("base.res_partner_2").id,
             'account_id': invoice_account.id,
             'currency_id': self.env.ref('base.USD').id,

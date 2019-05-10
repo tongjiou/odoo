@@ -3,14 +3,16 @@
 # * base_automation
 # 
 # Translators:
+# Bagavathikumar Ramakrishnan <bagavathikumar@gmail.com>, 2019
+# Abul Hassan M I <miabulhassan@gmail.com>, 2019
 # Alagappan Karthikeyan <me@karthik.sg>, 2019
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-19 13:43+0000\n"
-"PO-Revision-Date: 2017-09-20 10:15+0000\n"
+"POT-Creation-Date: 2019-03-29 10:09+0000\n"
+"PO-Revision-Date: 2018-08-24 09:16+0000\n"
 "Last-Translator: Alagappan Karthikeyan <me@karthik.sg>, 2019\n"
 "Language-Team: Tamil (https://www.transifex.com/odoo/teams/41243/ta/)\n"
 "MIME-Version: 1.0\n"
@@ -20,62 +22,81 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_help
+#: model:mail.template,body_html:base_automation.test_mail_template_automation
+msgid "<div>Email automation</div>"
+msgstr ""
+
+#. module: base_automation
+#: model:ir.model.fields,help:base_automation.field_base_automation__website_published
+msgid ""
+"A code server action can be executed from the website, using a dedicated "
+"controller. The address is <base>/website/action/<website_path>. Set this "
+"field as True to allow users to run this action. If it is set to False the "
+"action cannot be run through the website."
+msgstr ""
+"ஒரு சர்வர் செயல்திறன் ஒரு பிரத்யேக கட்டுப்படுத்தி பயன்படுத்தி, வலைத்தளத்தில்"
+" இருந்து செயல்படுத்த முடியும். முகவரி / இணையதளம் / செயல் / ஆகும். பயனர்கள் "
+"இந்தச் செயலை இயக்க அனுமதிக்க உண்மை என இந்த அமைவை அமைக்கவும். இது தவறாக "
+"அமைக்கப்பட்டிருந்தால், வலைத்தளத்தின் மூலம் இயங்காது."
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__help
 msgid "Action Description"
 msgstr "செயல் விளக்கம்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_name
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__name
 msgid "Action Name"
 msgstr "அதிரடி பெயர்"
 
 #. module: base_automation
-#: model:ir.model,name:base_automation.model_base_automation_line_test
-msgid "Action Rule Line Test"
-msgstr ""
-
-#. module: base_automation
-#: model:ir.model,name:base_automation.model_base_automation_lead_test
-msgid "Action Rule Test"
-msgstr ""
-
-#. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_state
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__state
 msgid "Action To Do"
 msgstr "செய்ய நடவடிக்கை"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_type
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__type
 msgid "Action Type"
 msgstr "அதிரடி வகை"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_active
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_active
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__active
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__active
 msgid "Active"
 msgstr "செயலில்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_channel_ids
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__activity_type_id
+msgid "Activity"
+msgstr "நடவடிக்கை"
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__activity_user_type
+msgid "Activity User Type"
+msgstr "செயல்பாடு பயனர் வகை"
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__channel_ids
 msgid "Add Channels"
 msgstr "சேனல்களைச் சேருங்கள்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_partner_ids
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__partner_ids
 msgid "Add Followers"
 msgstr "பின்தொடர்பவர்களை சேர்க்கவும்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_filter_domain
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__filter_domain
 msgid "Apply on"
 msgstr "விண்ணப்பிக்கவும்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_is_assigned_to_admin
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__is_assigned_to_admin
 msgid "Assigned to admin user"
 msgstr "நிர்வாக பயனருக்கு ஒதுக்கப்பட்டுள்ளது"
 
 #. module: base_automation
+#: selection:ir.actions.server,usage:0
 #: model:ir.model,name:base_automation.model_base_automation
 msgid "Automated Action"
 msgstr "தானியங்கி செயல்"
@@ -87,9 +108,24 @@ msgid "Automated Actions"
 msgstr "தானியங்கி செயல்கள்"
 
 #. module: base_automation
-#: model:ir.ui.view,arch_db:base_automation.view_base_automation_tree
+#: model:ir.model,name:base_automation.model_base_automation_line_test
+msgid "Automated Rule Line Test"
+msgstr "தானியங்கி விதி வரி சோதனை"
+
+#. module: base_automation
+#: model:ir.model,name:base_automation.model_base_automation_lead_test
+msgid "Automated Rule Test"
+msgstr "தானியங்கு விதி டெஸ்ட்"
+
+#. module: base_automation
+#: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_tree
 msgid "Automation"
 msgstr "ஆட்டோமேஷன்"
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__website_published
+msgid "Available on the Website"
+msgstr "இணையத்தளத்தில் கிடைக்கும்"
 
 #. module: base_automation
 #: model:ir.actions.server,name:base_automation.ir_cron_data_base_automation_check_ir_actions_server
@@ -135,6 +171,12 @@ msgid "Base Automation: test rule on write check context"
 msgstr "பேஸ் ஆட்டோமேஷன்: சோதனை காசோலை சூழலில் சோதனை விதி"
 
 #. module: base_automation
+#: model:base.automation,name:base_automation.test_rule_on_write_recompute_send_email
+#: model:ir.actions.server,name:base_automation.test_rule_on_write_recompute_send_email_ir_actions_server
+msgid "Base Automation: test send an email"
+msgstr ""
+
+#. module: base_automation
 #: selection:base.automation,trigger:0
 msgid "Based on Form Modification"
 msgstr "படிவம் மாற்றம் அடிப்படையில்"
@@ -145,17 +187,17 @@ msgid "Based on Timed Condition"
 msgstr "முடிக்கப்பட்ட நிலையில்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_filter_pre_domain
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__filter_pre_domain
 msgid "Before Update Domain"
 msgstr "புதுப்பிப்பு டொமைன் முன்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_binding_model_id
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__binding_model_id
 msgid "Binding Model"
 msgstr "பிணைப்பு மாதிரி"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_binding_type
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__binding_type
 msgid "Binding Type"
 msgstr "பிணைப்பு வகை"
 
@@ -165,17 +207,21 @@ msgid "Cancelled"
 msgstr "ரத்து"
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_lead_test_customer
-msgid "Check this box if this contact is a customer."
+#: model:ir.model.fields,help:base_automation.field_base_automation_lead_test__customer
+msgid ""
+"Check this box if this contact is a customer. It can be selected in sales "
+"orders."
 msgstr ""
+"இந்த தொடர்பு ஒரு வாடிக்கையாளர் என்றால் இந்த பெட்டியை சரிபார்க்கவும். இது "
+"விற்பனை ஆணைகளில் தேர்ந்தெடுக்கப்படலாம்."
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_child_ids
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__child_ids
 msgid "Child Actions"
 msgstr "குழந்தை நடவடிக்கைகள்"
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_child_ids
+#: model:ir.model.fields,help:base_automation.field_base_automation__child_ids
 msgid ""
 "Child server actions that will be executed. Note that the last return "
 "returned action value will be used as global return value."
@@ -184,38 +230,33 @@ msgstr ""
 "மதிப்பு உலகளாவிய வருவாய் மதிப்பாகப் பயன்படுத்தப்படும் என்பதை நினைவில் கொள்க."
 
 #. module: base_automation
-#: model:ir.actions.act_window,help:base_automation.base_automation_act
-msgid "Click to setup a new automated automation."
-msgstr ""
-
-#. module: base_automation
 #: selection:base.automation.lead.test,state:0
 msgid "Closed"
 msgstr "மூடப்பட்ட"
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_on_change_fields
+#: model:ir.model.fields,help:base_automation.field_base_automation__on_change_fields
 msgid "Comma-separated list of field names that triggers the onchange."
 msgstr "கமாவால் பிரிக்கப்பட்ட புலம் பெயர்கள், அவை மாற்றத்தை தூண்டுகிறது."
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_crud_model_id
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__crud_model_id
 msgid "Create/Write Target Model"
 msgstr "இலக்கு மாதிரி உருவாக்கவும் / எழுதவும்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_create_uid
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_create_uid
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test_create_uid
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__create_uid
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__create_uid
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "உருவாக்கியவர்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_create_date
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_create_date
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test_create_date
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__create_date
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__create_date
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test__create_date
 msgid "Created on"
-msgstr ""
+msgstr "உருவாக்கப்பட்ட தேதி"
 
 #. module: base_automation
 #: selection:base.automation,trg_date_range_type:0
@@ -223,12 +264,12 @@ msgid "Days"
 msgstr "நாட்களில்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_deadline
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__deadline
 msgid "Deadline"
 msgstr "காலக்கெடுவை"
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_trg_date_range
+#: model:ir.model.fields,help:base_automation.field_base_automation__trg_date_range
 msgid ""
 "Delay after the trigger date.\n"
 "                                    You can put a negative number if you need a delay before the\n"
@@ -239,29 +280,44 @@ msgstr ""
 "                                     சந்திப்புக்கு 15 நிமிடங்களுக்கு முன் ஒரு நினைவூட்டலை அனுப்புவது போன்ற தூண்டுதல் தேதி."
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_trg_date_range
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__trg_date_range
 msgid "Delay after trigger date"
 msgstr "தூண்டல் தேதிக்குப் பிறகு தாமதம்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_trg_date_range_type
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__trg_date_range_type
 msgid "Delay type"
 msgstr "தாமதிக்க வகை"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_display_name
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_display_name
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test_display_name
-msgid "Display Name"
-msgstr ""
+#: model:ir.model,name:base_automation.model_ir_demo
+msgid "Demo"
+msgstr "டெமோ"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_template_id
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__display_name
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__display_name
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test__display_name
+msgid "Display Name"
+msgstr "காட்சி பெயர்"
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__activity_date_deadline_range
+msgid "Due Date In"
+msgstr "தேதி தேதி"
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__activity_date_deadline_range_type
+msgid "Due type"
+msgstr "காரணமாக வகை"
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__template_id
 msgid "Email Template"
 msgstr "மின்னஞ்சல் டெம்ப்ளேட்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_xml_id
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__xml_id
 msgid "External ID"
 msgstr "புற ஐடி"
 
@@ -271,14 +327,19 @@ msgid "Hours"
 msgstr "மணி"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_id
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_id
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test_id
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__id
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__id
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test__id
 msgid "ID"
+msgstr "ID"
+
+#. module: base_automation
+#: model:ir.model.fields,help:base_automation.field_base_automation__xml_id
+msgid "ID of the action if defined in a XML file"
 msgstr ""
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_filter_domain
+#: model:ir.model.fields,help:base_automation.field_base_automation__filter_domain
 msgid ""
 "If present, this condition must be satisfied before executing the action "
 "rule."
@@ -287,7 +348,7 @@ msgstr ""
 "வேண்டும்."
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_filter_pre_domain
+#: model:ir.model.fields,help:base_automation.field_base_automation__filter_pre_domain
 msgid ""
 "If present, this condition must be satisfied before the update of the "
 "record."
@@ -301,53 +362,53 @@ msgid "In Progress"
 msgstr "முன்னேற்றம்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_customer
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__customer
 msgid "Is a Customer"
 msgstr "ஒரு வாடிக்கையாளர்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_date_action_last
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__date_action_last
 msgid "Last Action"
 msgstr "கடந்த நடவடிக்கை"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation___last_update
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test___last_update
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test___last_update
+#: model:ir.model.fields,field_description:base_automation.field_base_automation____last_update
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test____last_update
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "கடைசியாக திருத்திய"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_last_run
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__last_run
 msgid "Last Run"
 msgstr "கடைசி ரன்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_write_uid
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test_write_uid
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_write_uid
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__write_uid
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__write_uid
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "கடைசியாக புதுப்பிக்கப்பட்டவர்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_write_date
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test_write_date
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_write_date
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__write_date
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__write_date
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "கடைசியாக புதுப்பிக்கப்பட்டது"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test_lead_id
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test__lead_id
 msgid "Lead"
 msgstr "முன்னணி"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_line_ids
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__line_ids
 msgid "Line"
 msgstr "வரி"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_link_field_id
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__link_field_id
 msgid "Link using field"
 msgstr "களத்தை பயன்படுத்தி இணைப்பு"
 
@@ -357,18 +418,17 @@ msgid "Minutes"
 msgstr "நிமிடங்கள்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_model_id
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_model_name
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__model_id
 msgid "Model"
 msgstr "மாதிரி"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_crud_model_name
-msgid "Model Description"
-msgstr "மாதிரி விளக்கம்"
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__model_name
+msgid "Model Name"
+msgstr "மாதிரி பெயர்"
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_crud_model_id
+#: model:ir.model.fields,help:base_automation.field_base_automation__crud_model_id
 msgid ""
 "Model for record creation / update. Set this field only to specify a "
 "different model than the base model."
@@ -377,7 +437,7 @@ msgstr ""
 "வித்தியாசமான மாதிரியை குறிப்பிடுவதற்கு மட்டுமே இந்த புலத்தை அமைக்கவும்."
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_model_id
+#: model:ir.model.fields,help:base_automation.field_base_automation__model_id
 msgid "Model on which the server action runs."
 msgstr "சேவையக செயல்பாட்டை இயக்கும் மாதிரி."
 
@@ -387,9 +447,9 @@ msgid "Months"
 msgstr "மாதங்கள்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test_name
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test__name
 msgid "Name"
-msgstr ""
+msgstr "பெயர்"
 
 #. module: base_automation
 #: selection:base.automation.lead.test,state:0
@@ -397,7 +457,12 @@ msgid "New"
 msgstr "புதிய"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_on_change_fields
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__activity_note
+msgid "Note"
+msgstr "குறிப்பு"
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__on_change_fields
 msgid "On Change Fields Trigger"
 msgstr "மாற்ற புலங்கள் தூண்டல் மீது"
 
@@ -422,7 +487,7 @@ msgid "On Update"
 msgstr "புதுப்பிக்கவும்"
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_help
+#: model:ir.model.fields,help:base_automation.field_base_automation__help
 msgid ""
 "Optional help text for the users with a description of the target view, such"
 " as its usage and purpose."
@@ -431,9 +496,9 @@ msgstr ""
 "பயனர்களுக்கான விருப்ப உதவி உரை."
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_partner_id
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__partner_id
 msgid "Partner"
-msgstr ""
+msgstr "கூட்டாளி"
 
 #. module: base_automation
 #: selection:base.automation.lead.test,state:0
@@ -441,12 +506,12 @@ msgid "Pending"
 msgstr "நிலுவையில்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_priority
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__priority
 msgid "Priority"
 msgstr "முன்னுரிமை"
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_link_field_id
+#: model:ir.model.fields,help:base_automation.field_base_automation__link_field_id
 msgid ""
 "Provide the field used to link the newly created record on the record on "
 "used by the server action."
@@ -455,37 +520,39 @@ msgstr ""
 "இணைக்கப் பயன்படுத்தப்படும் களத்தை வழங்கவும்."
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_code
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__code
 msgid "Python Code"
 msgstr "பைதான் குறியீடு"
 
 #. module: base_automation
-#: model:ir.ui.view,arch_db:base_automation.view_base_automation_form
-msgid "Remove Action"
-msgstr "அதிரவை நீக்கவும்"
-
-#. module: base_automation
-#: model:ir.ui.view,arch_db:base_automation.view_base_automation_form
-msgid "Remove the contextual action related to this server action"
-msgstr "இந்த சேவையக நடவடிக்கை தொடர்பான சூழ்நிலை நடவடிக்கைகளை அகற்றுக"
-
-#. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_user_id
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__activity_user_id
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__user_id
 msgid "Responsible"
 msgstr "பொறுப்பான"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_sequence
-msgid "Sequence"
-msgstr ""
+#: selection:ir.actions.server,usage:0
+msgid "Scheduled Action"
+msgstr "திட்டமிடப்பட்ட செயல்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_action_server_id
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__sequence
+msgid "Sequence"
+msgstr "வரிசை"
+
+#. module: base_automation
+#: selection:ir.actions.server,usage:0
+#: model:ir.model,name:base_automation.model_ir_actions_server
+msgid "Server Action"
+msgstr "சர்வர் அதிரடி"
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__action_server_id
 msgid "Server Actions"
 msgstr "சர்வர் செயல்கள்"
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_binding_model_id
+#: model:ir.model.fields,help:base_automation.field_base_automation__binding_model_id
 msgid ""
 "Setting a value makes this action available in the sidebar for the given "
 "model."
@@ -494,27 +561,60 @@ msgstr ""
 "செய்கிறது."
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_state
+#: model_terms:ir.actions.act_window,help:base_automation.base_automation_act
+msgid "Setup a new automated automation"
+msgstr "ஒரு புதிய தானியங்கி தானியக்கத்தை அமைத்தல்"
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__state
 msgid "Status"
 msgstr "நிலைமை"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test_name
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_lead_test__name
 msgid "Subject"
 msgstr "பொருள்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_trigger
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__activity_summary
+msgid "Summary"
+msgstr "சுருக்கம்"
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__crud_model_name
+msgid "Target Model"
+msgstr ""
+
+#. module: base_automation
+#: model:ir.model.fields,help:base_automation.field_base_automation__activity_user_field_name
+msgid "Technical name of the user on the record"
+msgstr "பதிவின் பயனரின் தொழில்நுட்ப பெயர்"
+
+#. module: base_automation
+#: code:addons/base_automation/models/base_automation.py:87
+#, python-format
+msgid ""
+"The \"%(trigger_value)s\" %(trigger_label)s can only be used with the "
+"\"%(state_value)s\" action type"
+msgstr "\"\" \"\" \"\" வகை வகை மட்டுமே பயன்படுத்த முடியும்"
+
+#. module: base_automation
+#: model:ir.model.fields,help:base_automation.field_base_automation__website_url
+msgid "The full URL to access the server action through the website."
+msgstr "வலைத்தளத்தின் மூலம் சேவையக செயலை அணுக முழு URL."
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__trigger
 msgid "Trigger Condition"
 msgstr "தூண்டல் நிலை"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_trg_date_id
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__trg_date_id
 msgid "Trigger Date"
 msgstr "தூண்டல் தேதி"
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_state
+#: model:ir.model.fields,help:base_automation.field_base_automation__state
 msgid ""
 "Type of server action. The following values are available:\n"
 "- 'Execute Python Code': a block of python code that will be executed\n"
@@ -533,37 +633,75 @@ msgstr ""
 "- 'மின்னஞ்சல் அனுப்பு': தானாக ஒரு மின்னஞ்சலை அனுப்ப (மின்னஞ்சல் _template கிடைக்கும்)"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_usage
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__usage
+#: model:ir.model.fields,field_description:base_automation.field_ir_actions_server__usage
 msgid "Usage"
 msgstr "பயன்பாடு"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_trg_date_calendar_id
+#: model:ir.model.fields,help:base_automation.field_base_automation__activity_user_type
+msgid ""
+"Use 'Specific User' to always assign the same user on the next activity. Use"
+" 'Generic User From Record' to specify the field name of the user to choose "
+"on the record."
+msgstr ""
+"அடுத்த செயல்பாட்டில் அதே பயனரை எப்போதும் ஒதுக்க 'குறிப்பிட்ட பயனரை' "
+"பயன்படுத்தவும். பதிவில் தேர்ந்தெடுக்கும் பயனரின் களப் பெயரைக் "
+"குறிப்பிடுவதற்கு, 'பொது பயனாளர் பதிவிலிருந்து' பயன்படுத்துக."
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__trg_date_calendar_id
 msgid "Use Calendar"
 msgstr "நாட்காட்டி பயன்படுத்தவும்"
 
 #. module: base_automation
-#: model:ir.actions.act_window,help:base_automation.base_automation_act
+#: model_terms:ir.actions.act_window,help:base_automation.base_automation_act
 msgid ""
 "Use automated actions to automatically trigger actions for\n"
 "                various screens. Example: a lead created by a specific user may\n"
-"                be automatically set to a specific sales channel, or an\n"
+"                be automatically set to a specific Sales Team, or an\n"
 "                opportunity which still has status pending after 14 days might\n"
 "                trigger an automatic reminder email."
 msgstr ""
+"தானாக செயல்களைத் தூண்டுவதற்கு தானியங்கி செயல்களைப் பயன்படுத்தவும்\n"
+"                 பல்வேறு திரைகள். உதாரணம்: குறிப்பிட்ட பயனரால் உருவாக்கப்பட்ட ஒரு முன்னணி\n"
+"                 தானாக ஒரு குறிப்பிட்ட விற்பனை குழு அமைக்க, அல்லது ஒரு\n"
+"                 14 நாட்களுக்குப் பிறகு நிலுவையில் உள்ள நிலை இன்னும் நிலுவையில் உள்ளது\n"
+"                 தானியங்கி நினைவூட்டல் மின்னஞ்சலைத் தூண்டலாம்."
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test_user_id
+#: model:ir.model.fields,field_description:base_automation.field_base_automation_line_test__user_id
 msgid "User"
-msgstr ""
+msgstr "பயனர்"
 
 #. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation_fields_lines
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__activity_user_field_name
+msgid "User field name"
+msgstr "பயனர் புலம் பெயர்"
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__fields_lines
 msgid "Value Mapping"
 msgstr "மதிப்பு வரைபடம்"
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_trg_date_calendar_id
+#: code:addons/base_automation/models/base_automation.py:86
+#, python-format
+msgid "Warning"
+msgstr "எச்சரிக்கை"
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__website_path
+msgid "Website Path"
+msgstr "இணையத்தளம் பாதை"
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__website_url
+msgid "Website Url"
+msgstr "வலைத்தள ஊர்"
+
+#. module: base_automation
+#: model:ir.model.fields,help:base_automation.field_base_automation__trg_date_calendar_id
 msgid ""
 "When calculating a day-based timed condition, it is possible to use a "
 "calendar to compute the date based on working days."
@@ -572,7 +710,7 @@ msgstr ""
 "அடிப்படையில் தேதி கணக்கிட ஒரு காலெண்டர் பயன்படுத்த முடியும்."
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_sequence
+#: model:ir.model.fields,help:base_automation.field_base_automation__sequence
 msgid ""
 "When dealing with multiple actions, the execution order is based on the "
 "sequence. Low number means high priority."
@@ -581,7 +719,7 @@ msgstr ""
 "குறைந்த எண்ணிக்கையிலான உயர் முன்னுரிமை என்பது."
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_trg_date_id
+#: model:ir.model.fields,help:base_automation.field_base_automation__trg_date_id
 msgid ""
 "When should the condition be triggered.\n"
 "                                  If present, will be checked by the scheduler. If empty, will be checked at creation and update."
@@ -591,18 +729,15 @@ msgstr ""
 "சரிபார்க்கப்படும்."
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_active
+#: model:ir.model.fields,help:base_automation.field_base_automation__active
 msgid "When unchecked, the rule is hidden and will not be executed."
 msgstr "தேர்வு செய்யப்படாத போது, விதி மறைக்கப்பட்டு, செயல்படுத்தப்படாது."
 
 #. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation_code
+#: model:ir.model.fields,help:base_automation.field_base_automation__code
 msgid ""
 "Write Python code that the action will execute. Some variables are available"
-" for use; help about pyhon expression is given in the help tab."
+" for use; help about python expression is given in the help tab."
 msgstr ""
-
-#. module: base_automation
-#: model:ir.model,name:base_automation.model_ir_actions_server
-msgid "ir.actions.server"
-msgstr ""
+"நடவடிக்கை இயக்கப்படும் பைதான் குறியீடு எழுதவும். சில மாறிகள் பயன்பாட்டில் "
+"உள்ளன; பைதான் வெளிப்பாடு பற்றிய உதவி உதவி தாவலில் கொடுக்கப்பட்டுள்ளது."

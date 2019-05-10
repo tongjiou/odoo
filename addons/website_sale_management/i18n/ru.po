@@ -3,15 +3,15 @@
 # * website_sale_management
 # 
 # Translators:
-# sergeiruzkiicode <sergei.ruzki@icode.by>, 2018
+# Martin Trigaux, 2018
 # Oleg Kuryan <oleg@ventor.tech>, 2019
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server saas~11.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-30 13:12+0000\n"
-"PO-Revision-Date: 2017-11-30 15:23+0000\n"
+"POT-Creation-Date: 2018-09-18 09:49+0000\n"
+"PO-Revision-Date: 2018-08-24 09:35+0000\n"
 "Last-Translator: Oleg Kuryan <oleg@ventor.tech>, 2019\n"
 "Language-Team: Russian (https://www.transifex.com/odoo/teams/41243/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Генерировать счета для заказов в стату�
 
 #. module: website_sale_management
 #. openerp-web
-#: code:addons/website_sale_management/static/src/xml/website_sale_dashboard.xml:7
+#: code:addons/website_sale_management/static/src/xml/website_sale_dashboard.xml:6
 #, python-format
 msgid "Orders to Invoice"
 msgstr "Заказы к фактурированию"

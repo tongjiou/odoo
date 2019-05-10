@@ -14,6 +14,7 @@ def registry():
     return odoo.registry(common.get_db_name())
 
 
+@common.tagged('standard', 'at_install')
 class TestExecute(unittest.TestCase):
     """ Try cr.execute with wrong parameters """
 
@@ -35,11 +36,14 @@ class TestTestCursor(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestTestCursor, cls).setUpClass()
-        registry().enter_test_mode()
+        r = registry()
+        r.enter_test_mode(r.cursor())
 
     @classmethod
     def tearDownClass(cls):
-        registry().leave_test_mode()
+        r = registry()
+        r.test_cr.close()
+        r.leave_test_mode()
         super(TestTestCursor, cls).tearDownClass()
 
     def setUp(self):

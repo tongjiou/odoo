@@ -3,16 +3,15 @@
 # * website_event_sale
 # 
 # Translators:
-# Michael Yeung, 2017
 # 敬雲 林 <chingyun@yuanchih-consult.com>, 2018
 # Martin Trigaux, 2019
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-29 09:08+0000\n"
-"PO-Revision-Date: 2017-09-20 10:26+0000\n"
+"POT-Creation-Date: 2019-03-29 10:10+0000\n"
+"PO-Revision-Date: 2018-08-24 09:34+0000\n"
 "Last-Translator: Martin Trigaux, 2019\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/odoo/teams/41243/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -22,17 +21,17 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.registration_template
+#: model_terms:ir.ui.view,arch_db:website_event_sale.registration_template
 msgid "<span>Free</span>"
 msgstr "<span>免費</span>"
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.registration_template
+#: model_terms:ir.ui.view,arch_db:website_event_sale.registration_template
 msgid "<span>Unlimited</span>"
 msgstr "<span>不限</span>"
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.registration_template
+#: model_terms:ir.ui.view,arch_db:website_event_sale.registration_template
 msgid "<span>left</span>"
 msgstr "<span>離開</span>"
 
@@ -53,14 +52,24 @@ msgid ""
 msgstr ""
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.index
+#: model:ir.model.fields,field_description:website_event_sale.field_product_product__event_ticket_ids
+msgid "Event Tickets"
+msgstr "活動門票"
+
+#. module: website_event_sale
+#: model_terms:ir.ui.view,arch_db:website_event_sale.registration_complete_inherit_website_event_sale
+msgid "N/A"
+msgstr "不適用"
+
+#. module: website_event_sale
+#: model_terms:ir.ui.view,arch_db:website_event_sale.index
 msgid "Only"
 msgstr "僅"
 
 #. module: website_event_sale
 #: model:ir.model,name:website_event_sale.model_product_pricelist_item
-msgid "Pricelist item"
-msgstr "價格表專案"
+msgid "Pricelist Item"
+msgstr "價格表明細"
 
 #. module: website_event_sale
 #: model:ir.model,name:website_event_sale.model_product_product
@@ -68,23 +77,28 @@ msgid "Product"
 msgstr "產品"
 
 #. module: website_event_sale
-#: model:ir.model,name:website_event_sale.model_sale_order
-msgid "Quotation"
-msgstr "報價單"
-
-#. module: website_event_sale
-#: code:addons/website_event_sale/controllers/main.py:56
+#: code:addons/website_event_sale/controllers/main.py:63
 #, python-format
 msgid "Registration"
-msgstr "登記註冊"
+msgstr "登記"
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.index
+#: model_terms:ir.ui.view,arch_db:website_event_sale.index
 msgid "Remaining"
 msgstr "剩餘"
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.index
+#: model:ir.model,name:website_event_sale.model_sale_order
+msgid "Sale Order"
+msgstr "銷售訂單"
+
+#. module: website_event_sale
+#: model:ir.model,name:website_event_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "銷售訂單行"
+
+#. module: website_event_sale
+#: model_terms:ir.ui.view,arch_db:website_event_sale.index
 msgid "Sold Out"
 msgstr "已售完"
 
@@ -107,6 +121,11 @@ msgstr "對不起，只有%(remaining_seats)d席位仍然可用於%(ticket)s的�
 #, python-format
 msgid "The ticket doesn't match with this product."
 msgstr "這張門票不符合這個產品。"
+
+#. module: website_event_sale
+#: model_terms:ir.ui.view,arch_db:website_event_sale.registration_complete_inherit_website_event_sale
+msgid "Ticket"
+msgstr "門票"
 
 #. module: website_event_sale
 #: code:addons/website_event_sale/models/product_pricelist.py:20

@@ -5,11 +5,10 @@
 
 import base64
 import io
-from datetime import datetime
 
 from odoo import api, fields, models, _
 from odoo.exceptions import Warning
-from odoo.tools import float_is_zero, pycompat, DEFAULT_SERVER_DATE_FORMAT
+from odoo.tools import float_is_zero, pycompat
 
 
 class AccountFrFec(models.TransientModel):
@@ -67,8 +66,8 @@ class AccountFrFec(models.TransientModel):
             AND am.state = 'posted'
             '''
         company = self.env.user.company_id
-        formatted_date_from = self.date_from.replace('-', '')
-        date_from = datetime.strptime(self.date_from, DEFAULT_SERVER_DATE_FORMAT)
+        formatted_date_from = fields.Date.to_string(self.date_from).replace('-', '')
+        date_from = self.date_from
         formatted_date_year = date_from.year
         self._cr.execute(
             sql_query, (formatted_date_year, formatted_date_from, formatted_date_from, formatted_date_from, self.date_from, company.id))
@@ -186,8 +185,8 @@ class AccountFrFec(models.TransientModel):
         HAVING round(sum(aml.balance), %s) != 0
         AND aat.type not in ('receivable', 'payable')
         '''
-        formatted_date_from = self.date_from.replace('-', '')
-        date_from = datetime.strptime(self.date_from, DEFAULT_SERVER_DATE_FORMAT)
+        formatted_date_from = fields.Date.to_string(self.date_from).replace('-', '')
+        date_from = self.date_from
         formatted_date_year = date_from.year
         currency_digits = 2
 
@@ -351,7 +350,7 @@ class AccountFrFec(models.TransientModel):
             rows_to_write.append(list(row))
 
         fecvalue = self._csv_write_rows(rows_to_write)
-        end_date = self.date_to.replace('-', '')
+        end_date = fields.Date.to_string(self.date_to).replace('-', '')
         suffix = ''
         if self.export_type == "nonofficial":
             suffix = '-NONOFFICIAL'

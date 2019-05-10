@@ -27,8 +27,11 @@ class MrpProduction(models.Model):
                 'location_dest_id': production.location_dest_id.id,
                 'operation_id': sub_product.operation_id.id,
                 'production_id': production.id,
+                'warehouse_id': production.location_dest_id.get_warehouse().id,
                 'origin': production.name,
                 'unit_factor': qty1 / (production.product_qty - production.qty_produced),
+                'propagate': self.propagate,
+                'group_id': self.move_dest_ids and self.move_dest_ids.mapped('group_id')[0].id or self.procurement_group_id.id,
                 'subproduct_id': sub_product.id
             }
             move = Move.create(data)
@@ -58,13 +61,14 @@ class MrpProductProduce(models.TransientModel):
         for by_product_move in by_product_moves:
             rounding = by_product_move.product_uom.rounding
             quantity = float_round(self.product_qty * by_product_move.unit_factor, precision_rounding=rounding)
+            location_dest_id = by_product_move.location_dest_id.get_putaway_strategy(by_product_move.product_id).id or by_product_move.location_dest_id.id
             values = {
                 'move_id': by_product_move.id,
                 'product_id': by_product_move.product_id.id,
                 'production_id': self.production_id.id,
                 'product_uom_id': by_product_move.product_uom.id,
                 'location_id': by_product_move.location_id.id,
-                'location_dest_id': by_product_move.location_dest_id.id,
+                'location_dest_id': location_dest_id,
             }
             if by_product_move.product_id.tracking == 'lot':
                 values.update({

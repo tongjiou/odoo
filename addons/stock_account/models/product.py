@@ -101,6 +101,7 @@ class ProductTemplate(models.Model):
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
+    stock_value_currency_id = fields.Many2one('res.currency', compute='_compute_stock_value_currency')
     stock_value = fields.Float(
         'Value', compute='_compute_stock_value')
     qty_at_date = fields.Float(
@@ -125,7 +126,7 @@ class ProductProduct(models.Model):
             for product in self.with_context(location=location.id, compute_child=False).filtered(lambda r: r.valuation == 'real_time'):
                 diff = product.standard_price - new_price
                 if float_is_zero(diff, precision_rounding=product.currency_id.rounding):
-                    raise UserError(_("No difference between standard price and new price!"))
+                    raise UserError(_("No difference between the standard price and the new price."))
                 if not product_accounts[product.id].get('stock_valuation', False):
                     raise UserError(_('You don\'t have any stock valuation account defined on your product category. You must define one before processing this operation.'))
                 qty_available = product.qty_available
@@ -141,14 +142,15 @@ class ProductProduct(models.Model):
                     move_vals = {
                         'journal_id': product_accounts[product.id]['stock_journal'].id,
                         'company_id': location.company_id.id,
+                        'ref': product.default_code,
                         'line_ids': [(0, 0, {
-                            'name': _('Standard Price changed  - %s') % (product.display_name),
+                            'name': _('%s changed cost from %s to %s - %s') % (self.env.user.name, product.standard_price, new_price, product.display_name),
                             'account_id': debit_account_id,
                             'debit': abs(diff * qty_available),
                             'credit': 0,
                             'product_id': product.id,
                         }), (0, 0, {
-                            'name': _('Standard Price changed  - %s') % (product.display_name),
+                            'name': _('%s changed cost from %s to %s - %s') % (self.env.user.name, product.standard_price, new_price, product.display_name),
                             'account_id': credit_account_id,
                             'debit': 0,
                             'credit': abs(diff * qty_available),
@@ -164,8 +166,11 @@ class ProductProduct(models.Model):
     def _get_fifo_candidates_in_move(self):
         """ Find IN moves that can be used to value OUT moves.
         """
+        return self._get_fifo_candidates_in_move_with_company()
+
+    def _get_fifo_candidates_in_move_with_company(self, move_company_id=False):
         self.ensure_one()
-        domain = [('product_id', '=', self.id), ('remaining_qty', '>', 0.0)] + self.env['stock.move']._get_in_base_domain()
+        domain = [('product_id', '=', self.id), ('remaining_qty', '>', 0.0)] + self.env['stock.move']._get_in_base_domain(move_company_id)
         candidates = self.env['stock.move'].search(domain, order='date, id')
         return candidates
 
@@ -174,6 +179,12 @@ class ProductProduct(models.Model):
         domain = [('product_id', '=', self.id)] + StockMove._get_all_base_domain()
         moves = StockMove.search(domain)
         return sum(moves.mapped('remaining_value')), moves
+
+    @api.multi
+    def _compute_stock_value_currency(self):
+        currency_id = self.env.user.company_id.currency_id
+        for product in self:
+            product.stock_value_currency_id = currency_id
 
     @api.multi
     @api.depends('stock_move_ids.product_qty', 'stock_move_ids.state', 'stock_move_ids.remaining_value', 'product_tmpl_id.cost_method', 'product_tmpl_id.standard_price', 'product_tmpl_id.property_valuation', 'product_tmpl_id.categ_id.property_valuation')
@@ -210,7 +221,7 @@ class ProductProduct(models.Model):
         else:
             domain = [('product_id', 'in', self.ids)] + StockMove._get_all_base_domain()
             value_field_name = 'remaining_value'
-        
+
         StockMove.check_access_rights('read')
         query = StockMove._where_calc(domain)
         StockMove._apply_ir_rules(query, 'read')
@@ -266,12 +277,14 @@ class ProductProduct(models.Model):
         """
         self.ensure_one()
         to_date = self.env.context.get('to_date')
+        ctx = self.env.context.copy()
+        ctx.pop('group_by', None)
         action = {
             'name': _('Valuation at date'),
             'type': 'ir.actions.act_window',
             'view_type': 'form',
             'view_mode': 'tree,form',
-            'context': self.env.context,
+            'context': ctx,
         }
         if self.valuation == 'real_time':
             action['res_model'] = 'account.move.line'

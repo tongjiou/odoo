@@ -10,7 +10,7 @@ from collections import defaultdict
 import dateutil
 from dateutil.relativedelta import relativedelta
 
-from odoo import api, fields, models, SUPERUSER_ID
+from odoo import _, api, fields, models, SUPERUSER_ID
 from odoo.modules.registry import Registry
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from odoo.tools.safe_eval import safe_eval
@@ -77,6 +77,19 @@ class BaseAutomation(models.Model):
             self.trg_date_id = self.trg_date_range = self.trg_date_range_type = False
         elif self.trigger == 'on_time':
             self.filter_pre_domain = False
+
+    @api.onchange('trigger', 'state')
+    def _onchange_state(self):
+        if self.trigger == 'on_change' and self.state != 'code':
+            ff = self.fields_get(['trigger', 'state'])
+            return {'warning': {
+                'title': _("Warning"),
+                'message': _("The \"%(trigger_value)s\" %(trigger_label)s can only be used with the \"%(state_value)s\" action type") % {
+                    'trigger_value': dict(ff['trigger']['selection'])['on_change'],
+                    'trigger_label': ff['trigger']['string'],
+                    'state_value': dict(ff['state']['selection'])['code'],
+                }
+            }}
 
     @api.model
     def create(self, vals):
@@ -148,14 +161,17 @@ class BaseAutomation(models.Model):
             return records
 
     def _filter_post(self, records):
+        return self._filter_post_export_domain(records)[0]
+
+    def _filter_post_export_domain(self, records):
         """ Filter the records that satisfy the postcondition of action ``self``. """
         if self.filter_domain and records:
             domain = [('id', 'in', records.ids)] + safe_eval(self.filter_domain, self._get_eval_context())
-            return records.search(domain)
+            return records.search(domain), domain
         else:
-            return records
+            return records, None
 
-    def _process(self, records):
+    def _process(self, records, domain_post=None):
         """ Process action ``self`` on the ``records`` that have not been done yet. """
         # filter out the records on which self has already been done
         action_done = self._context['__action_done']
@@ -180,7 +196,12 @@ class BaseAutomation(models.Model):
         # execute server actions
         if self.action_server_id:
             for record in records:
-                ctx = {'active_model': record._name, 'active_ids': record.ids, 'active_id': record.id}
+                ctx = {
+                    'active_model': record._name,
+                    'active_ids': record.ids,
+                    'active_id': record.id,
+                    'domain_post': domain_post,
+                }
                 self.action_server_id.with_context(**ctx).run()
 
     @api.model_cr
@@ -199,16 +220,16 @@ class BaseAutomation(models.Model):
 
         def make_create():
             """ Instanciate a create method that processes action rules. """
-            @api.model
-            def create(self, vals, **kw):
+            @api.model_create_multi
+            def create(self, vals_list, **kw):
                 # retrieve the action rules to possibly execute
                 actions = self.env['base.automation']._get_actions(self, ['on_create', 'on_create_or_write'])
                 # call original method
-                record = create.origin(self.with_env(actions.env), vals, **kw)
+                records = create.origin(self.with_env(actions.env), vals_list, **kw)
                 # check postconditions, and execute actions on the records that satisfy them
                 for action in actions.with_context(old_values=None):
-                    action._process(action._filter_post(record))
-                return record.with_env(self.env)
+                    action._process(action._filter_post(records))
+                return records.with_env(self.env)
 
             return create
 
@@ -228,13 +249,14 @@ class BaseAutomation(models.Model):
                 # read old values before the update
                 old_values = {
                     old_vals.pop('id'): old_vals
-                    for old_vals in records.read(list(vals))
+                    for old_vals in (records.read(list(vals)) if vals else [])
                 }
                 # call original method
                 _write.origin(records, vals, **kw)
                 # check postconditions, and execute actions on the records that satisfy them
                 for action in actions.with_context(old_values=old_values):
-                    action._process(action._filter_post(pre[action]))
+                    records, domain_post = action._filter_post_export_domain(pre[action])
+                    action._process(records, domain_post=domain_post)
                 return True
 
             return _write

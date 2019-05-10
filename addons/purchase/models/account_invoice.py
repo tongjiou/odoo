@@ -12,8 +12,21 @@ class AccountInvoice(models.Model):
         comodel_name='purchase.order',
         string='Add Purchase Order',
         readonly=True, states={'draft': [('readonly', False)]},
-        help='Encoding help. When selected, the associated purchase order lines are added to the vendor bill. Several PO can be selected.'
+        help='Load the vendor bill based on selected purchase order. Several PO can be selected.'
     )
+    vendor_bill_purchase_id = fields.Many2one(
+        comodel_name='purchase.bill.union',
+        string='Auto-Complete'
+    )
+
+    @api.onchange('vendor_bill_purchase_id')
+    def _onchange_bill_purchase_order(self):
+        if not self.vendor_bill_purchase_id:
+            return {}
+        self.purchase_id = self.vendor_bill_purchase_id.purchase_order_id
+        self.vendor_bill_id = self.vendor_bill_purchase_id.vendor_bill_id
+        self.vendor_bill_purchase_id = False
+        return {}
 
     @api.onchange('state', 'partner_id', 'invoice_line_ids')
     def _onchange_allowed_purchase_ids(self):
@@ -27,7 +40,7 @@ class AccountInvoice(models.Model):
         purchase_line_ids = self.invoice_line_ids.mapped('purchase_line_id')
         purchase_ids = self.invoice_line_ids.mapped('purchase_id').filtered(lambda r: r.order_line <= purchase_line_ids)
 
-        domain = [('invoice_status', '=', 'to invoice')]
+        domain = [('invoice_status', 'in', ['to invoice', 'no'])]
         if self.partner_id:
             domain += [('partner_id', 'child_of', self.partner_id.id)]
         if purchase_ids:
@@ -43,16 +56,18 @@ class AccountInvoice(models.Model):
         if float_compare(qty, 0.0, precision_rounding=line.product_uom.rounding) <= 0:
             qty = 0.0
         taxes = line.taxes_id
-        invoice_line_tax_ids = line.order_id.fiscal_position_id.map_tax(taxes)
+        invoice_line_tax_ids = line.order_id.fiscal_position_id.map_tax(taxes, line.product_id, line.order_id.partner_id)
         invoice_line = self.env['account.invoice.line']
+        date = self.date or self.date_invoice
         data = {
             'purchase_line_id': line.id,
-            'name': line.order_id.name+': '+line.name,
+            'name': line.order_id.name + ': ' + line.name,
             'origin': line.order_id.origin,
             'uom_id': line.product_uom.id,
             'product_id': line.product_id.id,
             'account_id': invoice_line.with_context({'journal_id': self.journal_id.id, 'type': 'in_invoice'})._default_account(),
-            'price_unit': line.order_id.currency_id.with_context(date=self.date_invoice).compute(line.price_unit, self.currency_id, round=False),
+            'price_unit': line.order_id.currency_id._convert(
+                line.price_unit, self.currency_id, line.company_id, date or fields.Date.today(), round=False),
             'quantity': qty,
             'discount': 0.0,
             'account_analytic_id': line.account_analytic_id.id,
@@ -84,6 +99,15 @@ class AccountInvoice(models.Model):
             self.reference = ", ".join([self.reference, vendor_ref]) if (
                     self.reference and vendor_ref not in self.reference) else vendor_ref
 
+        if not self.invoice_line_ids:
+            #as there's no invoice line yet, we keep the currency of the PO
+            self.currency_id = self.purchase_id.currency_id
+
+        vendor_ref = self.purchase_id.partner_ref
+        if vendor_ref:
+            self.reference = ", ".join([self.reference, vendor_ref]) if (
+                    self.reference and vendor_ref not in self.reference) else vendor_ref
+
         new_lines = self.env['account.invoice.line']
         for line in self.purchase_id.order_line - self.invoice_line_ids.mapped('purchase_line_id'):
             data = self._prepare_invoice_line_from_po_line(line)
@@ -101,7 +125,10 @@ class AccountInvoice(models.Model):
     def _onchange_currency_id(self):
         if self.currency_id:
             for line in self.invoice_line_ids.filtered(lambda r: r.purchase_line_id):
-                line.price_unit = line.purchase_id.currency_id.with_context(date=self.date_invoice).compute(line.purchase_line_id.price_unit, self.currency_id, round=False)
+                date = self.date or self.date_invoice or fields.Date.today()
+                company = self.company_id
+                line.price_unit = line.purchase_id.currency_id._convert(
+                    line.purchase_line_id.price_unit, self.currency_id, company, date, round=False)
 
     @api.onchange('invoice_line_ids')
     def _onchange_origin(self):
@@ -115,9 +142,10 @@ class AccountInvoice(models.Model):
         res = super(AccountInvoice, self)._onchange_partner_id()
         if payment_term_id:
             self.payment_term_id = payment_term_id
-        if not self.env.context.get('default_journal_id') and self.partner_id and self.currency_id and\
+        if not self.env.context.get('default_journal_id') and self.partner_id and\
                 self.type in ['in_invoice', 'in_refund'] and\
-                self.currency_id != self.partner_id.property_purchase_currency_id:
+                self.currency_id != self.partner_id.property_purchase_currency_id and\
+                self.partner_id.property_purchase_currency_id.id:
             journal_domain = [
                 ('type', '=', 'purchase'),
                 ('company_id', '=', self.company_id.id),
@@ -126,127 +154,18 @@ class AccountInvoice(models.Model):
             default_journal_id = self.env['account.journal'].search(journal_domain, limit=1)
             if default_journal_id:
                 self.journal_id = default_journal_id
+            if self.env.context.get('default_currency_id'):
+                self.currency_id = self.env.context['default_currency_id']
+            if self.partner_id.property_purchase_currency_id:
+                self.currency_id = self.partner_id.property_purchase_currency_id
         return res
-
-    @api.model
-    def invoice_line_move_line_get(self):
-        res = super(AccountInvoice, self).invoice_line_move_line_get()
-
-        if self.env.user.company_id.anglo_saxon_accounting:
-            if self.type in ['in_invoice', 'in_refund']:
-                for i_line in self.invoice_line_ids:
-                    res.extend(self._anglo_saxon_purchase_move_lines(i_line, res))
-        return res
-
-    @api.model
-    def _anglo_saxon_purchase_move_lines(self, i_line, res):
-        """Return the additional move lines for purchase invoices and refunds.
-
-        i_line: An account.invoice.line object.
-        res: The move line entries produced so far by the parent move_line_get.
-        """
-        inv = i_line.invoice_id
-        company_currency = inv.company_id.currency_id
-        invoice_currency = inv.currency_id
-        if i_line.product_id and i_line.product_id.valuation == 'real_time' and i_line.product_id.type == 'product':
-            # get the fiscal position
-            fpos = i_line.invoice_id.fiscal_position_id
-            # get the price difference account at the product
-            acc = i_line.product_id.property_account_creditor_price_difference
-            if not acc:
-                # if not found on the product get the price difference account at the category
-                acc = i_line.product_id.categ_id.property_account_creditor_price_difference_categ
-            acc = fpos.map_account(acc).id
-            # reference_account_id is the stock input account
-            reference_account_id = i_line.product_id.product_tmpl_id.get_product_accounts(fiscal_pos=fpos)['stock_input'].id
-            diff_res = []
-            # calculate and write down the possible price difference between invoice price and product price
-            for line in res:
-                if line.get('invl_id', 0) == i_line.id and reference_account_id == line['account_id']:
-                    # Do not forward port in >= saas-11.3. PR #32616 takes care of it
-                    # Standard price is in company currency
-                    valuation_price_unit = i_line.product_id.uom_id._compute_price(i_line.product_id.standard_price, i_line.uom_id)
-                    currency_valuation_price_unit = company_currency
-                    if i_line.product_id.cost_method != 'standard' and i_line.purchase_line_id:
-                        #for average/fifo/lifo costing method, fetch real cost price from incomming moves
-                        stock_move_obj = self.env['stock.move']
-                        valuation_stock_move = stock_move_obj.search([
-                            ('purchase_line_id', '=', i_line.purchase_line_id.id),
-                            ('state', '=', 'done'), ('product_qty', '!=', 0.0)
-                        ])
-                        if self.type == 'in_refund':
-                            valuation_stock_move = valuation_stock_move.filtered(lambda m: m._is_out())
-                        elif self.type == 'in_invoice':
-                            valuation_stock_move = valuation_stock_move.filtered(lambda m: m._is_in())
-
-                        if valuation_stock_move:
-                            valuation_price_unit_total = 0
-                            valuation_total_qty = 0
-                            for val_stock_move in valuation_stock_move:
-                                valuation_price_unit_total += abs(val_stock_move.price_unit) * val_stock_move.product_qty
-                                valuation_total_qty += val_stock_move.product_qty
-
-                            # in Stock Move, price unit is in company_currency
-                            valuation_price_unit = valuation_price_unit_total / valuation_total_qty
-                            valuation_price_unit = i_line.product_id.uom_id._compute_price(valuation_price_unit, i_line.uom_id)
-                        else:
-                            # PO unit price might be in another currency
-                            valuation_price_unit = i_line.purchase_line_id.product_uom._compute_price(i_line.purchase_line_id.price_unit, i_line.uom_id)
-                            currency_valuation_price_unit = i_line.purchase_line_id.order_id.currency_id
-
-                    # Put the valuation price unit in the invoice currency
-                    if invoice_currency != currency_valuation_price_unit:
-                        valuation_price_unit_invoice_currency = (
-                            currency_valuation_price_unit
-                            .with_context(date=inv.date_invoice)
-                            .compute(valuation_price_unit, invoice_currency, round=False)
-                        )
-                    else:
-                        valuation_price_unit_invoice_currency = valuation_price_unit
-
-                    # Valuation price unit and i_line.price_unit in invoice currency
-                    # A safe assumption is that line['price_unit'] and i_line.price_unit both in the currency of the invoice, foreign or not
-                    if (
-                        acc and
-                        float_compare(line['price_unit'], i_line.price_unit, precision_rounding=invoice_currency.rounding) == 0 and
-                        float_compare(valuation_price_unit_invoice_currency, i_line.price_unit, precision_rounding=invoice_currency.rounding) != 0
-                    ):
-                        # price with discount and without tax included
-                        price_unit = i_line.price_unit * (1 - (i_line.discount or 0.0) / 100.0)
-                        tax_ids = []
-                        if line['tax_ids']:
-                            #line['tax_ids'] is like [(4, tax_id, None), (4, tax_id2, None)...]
-                            taxes = self.env['account.tax'].browse([x[1] for x in line['tax_ids']])
-                            price_unit = taxes.compute_all(price_unit, currency=invoice_currency, quantity=1.0)['total_excluded']
-                            for tax in taxes:
-                                tax_ids.append((4, tax.id, None))
-                                for child in tax.children_tax_ids:
-                                    if child.type_tax_use != 'none':
-                                        tax_ids.append((4, child.id, None))
-
-                        price_before = line.get('price', 0.0)
-                        line.update({'price': invoice_currency.round(valuation_price_unit_invoice_currency * line['quantity'])})
-                        diff_res.append({
-                            'type': 'src',
-                            'name': i_line.name[:64],
-                            'price_unit': invoice_currency.round(price_unit - valuation_price_unit_invoice_currency),
-                            'quantity': line['quantity'],
-                            'price': invoice_currency.round(price_before - line.get('price', 0.0)),
-                            'account_id': acc,
-                            'product_id': line['product_id'],
-                            'uom_id': line['uom_id'],
-                            'account_analytic_id': line['account_analytic_id'],
-                            'tax_ids': tax_ids,
-                            })
-            return diff_res
-        return []
 
     @api.model
     def create(self, vals):
         invoice = super(AccountInvoice, self).create(vals)
         purchase = invoice.invoice_line_ids.mapped('purchase_line_id.order_id')
         if purchase and not invoice.refund_invoice_id:
-            message = _("This vendor bill has been created from: %s") % (",".join(["<a href=# data-oe-model=purchase.order data-oe-id="+str(order.id)+">"+order.name+"</a>" for order in purchase]))
+            message = _("This vendor bill has been created from: %s") % (",".join(["<a href=# data-oe-model=purchase.order data-oe-id=" + str(order.id) + ">" + order.name + "</a>" for order in purchase]))
             invoice.message_post(body=message)
         return invoice
 
@@ -260,9 +179,15 @@ class AccountInvoice(models.Model):
             #To get all po reference when updating invoice line or adding purchase order reference from vendor bill.
             purchase = (purchase_old | purchase_new) - (purchase_old & purchase_new)
             if purchase:
-                message = _("This vendor bill has been modified from: %s") % (",".join(["<a href=# data-oe-model=purchase.order data-oe-id="+str(order.id)+">"+order.name+"</a>" for order in purchase]))
+                message = _("This vendor bill has been modified from: %s") % (",".join(["<a href=# data-oe-model=purchase.order data-oe-id=" + str(order.id) + ">" + order.name + "</a>" for order in purchase]))
                 invoice.message_post(body=message)
         return result
+
+    def _get_onchange_create(self):
+        res = super()._get_onchange_create()
+        res['_onchange_partner_id'].append('currency_id')
+        return res
+
 
 class AccountInvoiceLine(models.Model):
     """ Override AccountInvoice_line to add the link to the purchase order line it is related to"""

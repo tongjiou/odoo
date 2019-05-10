@@ -3,18 +3,16 @@
 # * account_check_printing
 # 
 # Translators:
-# Seongseok Shin <shinss61@hotmail.com>, 2018
-# Mark Lee <odoos@soti.33mail.com>, 2018
 # Martin Trigaux, 2018
 # Linkup <link-up@naver.com>, 2018
 # JH CHOI <hwangtog@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.saas~18\n"
+"Project-Id-Version: Odoo Server saas~11.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-20 09:53+0000\n"
-"PO-Revision-Date: 2017-09-20 10:14+0000\n"
+"POT-Creation-Date: 2018-09-21 13:17+0000\n"
+"PO-Revision-Date: 2018-08-24 09:15+0000\n"
 "Last-Translator: JH CHOI <hwangtog@gmail.com>, 2019\n"
 "Language-Team: Korean (https://www.transifex.com/odoo/teams/41243/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -30,67 +28,107 @@ msgid " : Check Number Sequence"
 msgstr " : 번호 순서 확인"
 
 #. module: account_check_printing
-#: code:addons/account_check_printing/models/account_payment.py:69
+#: code:addons/account_check_printing/models/account_payment.py:63
 #, python-format
 msgid "A check memo cannot exceed 60 characters."
 msgstr "수표 메모는 60자를 초과할 수 없습니다."
 
 #. module: account_check_printing
-#: model:ir.model.fields,field_description:account_check_printing.field_account_payment_check_amount_in_words
-#: model:ir.model.fields,field_description:account_check_printing.field_account_register_payments_check_amount_in_words
+#: model:ir.model,name:account_check_printing.model_account_chart_template
+msgid "Account Chart Template"
+msgstr "회계 계정 서식"
+
+#. module: account_check_printing
+#: model:ir.model.fields,help:account_check_printing.field_res_company__account_check_printing_margin_left
+#: model:ir.model.fields,help:account_check_printing.field_res_company__account_check_printing_margin_right
+#: model:ir.model.fields,help:account_check_printing.field_res_company__account_check_printing_margin_top
+#: model:ir.model.fields,help:account_check_printing.field_res_config_settings__account_check_printing_margin_left
+#: model:ir.model.fields,help:account_check_printing.field_res_config_settings__account_check_printing_margin_right
+#: model:ir.model.fields,help:account_check_printing.field_res_config_settings__account_check_printing_margin_top
+msgid ""
+"Adjust the margins of generated checks to make it fit your printer's "
+"settings."
+msgstr "생성된 수표의 여백을 프린터의 설정과 일치하도록 조정하십시오"
+
+#. module: account_check_printing
+#: model:ir.model.fields,field_description:account_check_printing.field_account_payment__check_amount_in_words
+#: model:ir.model.fields,field_description:account_check_printing.field_account_register_payments__check_amount_in_words
 msgid "Amount in Words"
 msgstr "글로 쓴 금액"
 
 #. module: account_check_printing
-#: model:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
+#: model_terms:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
 msgid "Cancel"
 msgstr "취소"
 
 #. module: account_check_printing
-#: model:ir.model.fields,field_description:account_check_printing.field_account_payment_check_number
-#: model:ir.model.fields,field_description:account_check_printing.field_account_register_payments_check_number
+#: model:ir.model.fields,field_description:account_check_printing.field_res_company__account_check_printing_layout
+#: model:ir.model.fields,field_description:account_check_printing.field_res_config_settings__account_check_printing_layout
+msgid "Check Layout"
+msgstr "수표 모양"
+
+#. module: account_check_printing
+#: model:ir.model.fields,field_description:account_check_printing.field_res_company__account_check_printing_margin_left
+#: model:ir.model.fields,field_description:account_check_printing.field_res_config_settings__account_check_printing_margin_left
+msgid "Check Left Margin"
+msgstr "수표 왼쪽 여백"
+
+#. module: account_check_printing
+#: model:ir.model.fields,field_description:account_check_printing.field_account_payment__check_number
+#: model:ir.model.fields,field_description:account_check_printing.field_account_register_payments__check_number
 msgid "Check Number"
-msgstr "번호 확인"
+msgstr "수표 번호"
 
 #. module: account_check_printing
-#: model:ir.ui.view,arch_db:account_check_printing.view_account_journal_form_inherited
+#: model_terms:ir.ui.view,arch_db:account_check_printing.view_account_journal_form_inherited
 msgid "Check Printing"
-msgstr "인쇄 확인"
+msgstr "수표 인쇄하기"
 
 #. module: account_check_printing
-#: model:ir.model.fields,field_description:account_check_printing.field_account_journal_check_printing_payment_method_selected
+#: model:ir.model.fields,field_description:account_check_printing.field_account_journal__check_printing_payment_method_selected
 msgid "Check Printing Payment Method Selected"
-msgstr "선택한 결제 방식 인쇄 확인"
+msgstr "선택한 결제 방식으로 수표 인쇄하기"
 
 #. module: account_check_printing
-#: model:ir.model.fields,field_description:account_check_printing.field_account_journal_check_sequence_id
+#: model:ir.model.fields,field_description:account_check_printing.field_res_config_settings__account_check_printing_margin_right
+msgid "Check Right Margin"
+msgstr "수표 오른쪽 여백"
+
+#. module: account_check_printing
+#: model:ir.model.fields,field_description:account_check_printing.field_account_journal__check_sequence_id
 msgid "Check Sequence"
-msgstr "순서 확인"
+msgstr "수표 순서"
 
 #. module: account_check_printing
-#: model:ir.model.fields,help:account_check_printing.field_account_journal_check_manual_sequencing
-#: model:ir.model.fields,help:account_check_printing.field_account_payment_check_manual_sequencing
-#: model:ir.model.fields,help:account_check_printing.field_account_register_payments_check_manual_sequencing
+#: model:ir.model.fields,field_description:account_check_printing.field_res_company__account_check_printing_margin_top
+#: model:ir.model.fields,field_description:account_check_printing.field_res_config_settings__account_check_printing_margin_top
+msgid "Check Top Margin"
+msgstr "수표 위쪽 여백"
+
+#. module: account_check_printing
+#: model:ir.model.fields,help:account_check_printing.field_account_journal__check_manual_sequencing
+#: model:ir.model.fields,help:account_check_printing.field_account_payment__check_manual_sequencing
+#: model:ir.model.fields,help:account_check_printing.field_account_register_payments__check_manual_sequencing
 msgid "Check this option if your pre-printed checks are not numbered."
-msgstr "미리 인쇄 된 수표에 번호가 없는 경우 이 옵션을 선택하십시오."
+msgstr "미리 인쇄된 수표에 번호가 없는 경우 이 옵션을 선택하십시오."
 
 #. module: account_check_printing
-#: model:ir.ui.view,arch_db:account_check_printing.account_journal_dashboard_kanban_view_inherited
+#: model_terms:ir.ui.view,arch_db:account_check_printing.account_journal_dashboard_kanban_view_inherited
 msgid "Check to print"
-msgstr "인쇄하려면 확인"
+msgstr "수표 인쇄"
 
 #. module: account_check_printing
 #: model:account.payment.method,name:account_check_printing.account_payment_method_check
 msgid "Checks"
-msgstr "검사"
+msgstr "수표"
 
 #. module: account_check_printing
-#: model:ir.ui.view,arch_db:account_check_printing.view_payment_check_printing_search
+#: model_terms:ir.ui.view,arch_db:account_check_printing.view_payment_check_printing_search
 msgid "Checks To Print"
-msgstr "수표 인쇄"
+msgstr "인쇄할 수표"
 
 #. module: account_check_printing
-#: model:ir.model.fields,help:account_check_printing.field_account_journal_check_sequence_id
+#: model:ir.model.fields,help:account_check_printing.field_account_journal__check_sequence_id
 msgid "Checks numbering sequence."
 msgstr "수표 번호 부여 순서입니다."
 
@@ -98,35 +136,50 @@ msgstr "수표 번호 부여 순서입니다."
 #: code:addons/account_check_printing/models/account_journal.py:97
 #, python-format
 msgid "Checks to Print"
-msgstr "수표 인쇄"
+msgstr "인쇄할 수표"
 
 #. module: account_check_printing
-#: model:ir.ui.view,arch_db:account_check_printing.account_journal_dashboard_kanban_view_inherited
+#: model_terms:ir.ui.view,arch_db:account_check_printing.account_journal_dashboard_kanban_view_inherited
 msgid "Checks to print"
-msgstr "수표 인쇄"
+msgstr "인쇄할 수표"
 
 #. module: account_check_printing
-#: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks_create_uid
+#: model:ir.model,name:account_check_printing.model_res_company
+msgid "Companies"
+msgstr "회사"
+
+#. module: account_check_printing
+#: model:ir.model.fields,field_description:account_check_printing.field_res_config_settings__country_code
+msgid "Company Country code"
+msgstr "회사 국가 코드"
+
+#. module: account_check_printing
+#: model:ir.model,name:account_check_printing.model_res_config_settings
+msgid "Config Settings"
+msgstr "설정 구성"
+
+#. module: account_check_printing
+#: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks__create_uid
 msgid "Created by"
 msgstr "작성자"
 
 #. module: account_check_printing
-#: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks_create_date
+#: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks__create_date
 msgid "Created on"
 msgstr "작성일"
 
 #. module: account_check_printing
-#: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks_display_name
+#: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks__display_name
 msgid "Display Name"
-msgstr "표시 이름"
+msgstr "이름 표시"
 
 #. module: account_check_printing
-#: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks_id
+#: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks__id
 msgid "ID"
 msgstr "ID"
 
 #. module: account_check_printing
-#: code:addons/account_check_printing/models/account_payment.py:89
+#: code:addons/account_check_printing/models/account_payment.py:84
 #, python-format
 msgid ""
 "In order to print multiple checks at once, they must belong to the same bank"
@@ -136,49 +189,55 @@ msgstr "한 번에 여러 수표를 인쇄하려면 은행 계좌가 동일해�
 #. module: account_check_printing
 #: model:ir.model,name:account_check_printing.model_account_journal
 msgid "Journal"
-msgstr "잡지"
+msgstr "분개장"
 
 #. module: account_check_printing
-#: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks___last_update
+#: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks____last_update
 msgid "Last Modified on"
 msgstr "최근 수정"
 
 #. module: account_check_printing
-#: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks_write_uid
+#: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks__write_uid
 msgid "Last Updated by"
 msgstr "최근 갱신한 사람"
 
 #. module: account_check_printing
-#: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks_write_date
+#: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks__write_date
 msgid "Last Updated on"
 msgstr "최근 갱신 날짜"
 
 #. module: account_check_printing
-#: model:ir.model.fields,field_description:account_check_printing.field_account_journal_check_manual_sequencing
-#: model:ir.model.fields,field_description:account_check_printing.field_account_payment_check_manual_sequencing
-#: model:ir.model.fields,field_description:account_check_printing.field_account_register_payments_check_manual_sequencing
+#: model:ir.model.fields,field_description:account_check_printing.field_account_journal__check_manual_sequencing
+#: model:ir.model.fields,field_description:account_check_printing.field_account_payment__check_manual_sequencing
+#: model:ir.model.fields,field_description:account_check_printing.field_account_register_payments__check_manual_sequencing
 msgid "Manual Numbering"
 msgstr "수동으로 번호 부여"
 
 #. module: account_check_printing
-#: model:ir.ui.view,arch_db:account_check_printing.view_account_bank_journal_form_inherited_check_printing
-msgid "Manual Numbering of check"
-msgstr ""
+#: model:ir.model.fields,field_description:account_check_printing.field_res_company__account_check_printing_multi_stub
+#: model:ir.model.fields,field_description:account_check_printing.field_res_config_settings__account_check_printing_multi_stub
+msgid "Multi-Pages Check Stub"
+msgstr "여러 매용 수표 스텁 확인"
 
 #. module: account_check_printing
-#: model:ir.model.fields,field_description:account_check_printing.field_account_journal_check_next_number
-#: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks_next_check_number
+#: model:ir.model.fields,field_description:account_check_printing.field_account_journal__check_next_number
+#: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks__next_check_number
 msgid "Next Check Number"
 msgstr "다음 수표 번호"
 
 #. module: account_check_printing
-#: model:ir.model.fields,help:account_check_printing.field_account_register_payments_check_number
+#: selection:res.company,account_check_printing_layout:0
+msgid "None"
+msgstr "없음"
+
+#. module: account_check_printing
+#: model:ir.model.fields,help:account_check_printing.field_account_register_payments__check_number
 msgid ""
 "Number of the check corresponding to this payment. If your pre-printed check"
 " are not already numbered, you can manage the numbering in the journal "
 "configuration page."
 msgstr ""
-"지불에 해당하는 수표 번호. 미리 인쇄된 수표에 번호가 지정되지 않은 경우 계정 구성 페이지에서 수표를 관리 할 수 ​​있습니다."
+"지불에 해당하는 수표 번호. 미리 인쇄된 수표에 번호가 지정되지 않은 경우 계정 구성 페이지에서 수표를 관리할 수 ​​있습니다."
 
 #. module: account_check_printing
 #: model:ir.model,name:account_check_printing.model_account_payment
@@ -186,7 +245,7 @@ msgid "Payments"
 msgstr "결제"
 
 #. module: account_check_printing
-#: code:addons/account_check_printing/models/account_payment.py:86
+#: code:addons/account_check_printing/models/account_payment.py:81
 #, python-format
 msgid ""
 "Payments to print as a checks must have 'Check' selected as payment method "
@@ -194,19 +253,19 @@ msgid ""
 msgstr "수표로 지불하려면 '수표'를 선택해야 하지만 아직 조정되지 않았습니다."
 
 #. module: account_check_printing
-#: model:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
+#: model_terms:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
 msgid ""
 "Please enter the number of the first pre-printed check that you are about to"
 " print on."
 msgstr "인쇄할 첫 번째 미리 인쇄된 수표 번호를 입력하십시오."
 
 #. module: account_check_printing
-#: model:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
+#: model_terms:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
 msgid "Print"
 msgstr "인쇄"
 
 #. module: account_check_printing
-#: model:ir.ui.view,arch_db:account_check_printing.view_account_payment_form_inherited
+#: model_terms:ir.ui.view,arch_db:account_check_printing.view_account_payment_form_inherited
 msgid "Print Check"
 msgstr "수표 인쇄"
 
@@ -216,29 +275,57 @@ msgid "Print Checks"
 msgstr "수표 인쇄"
 
 #. module: account_check_printing
-#: code:addons/account_check_printing/models/account_payment.py:99
+#: model:ir.model.fields,field_description:account_check_printing.field_res_company__account_check_printing_date_label
+#: model:ir.model.fields,field_description:account_check_printing.field_res_config_settings__account_check_printing_date_label
+msgid "Print Date Label"
+msgstr "날짜 라벨 인쇄"
+
+#. module: account_check_printing
+#: code:addons/account_check_printing/models/account_payment.py:94
 #: model:ir.model,name:account_check_printing.model_print_prenumbered_checks
-#: model:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
+#: model_terms:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
 #, python-format
 msgid "Print Pre-numbered Checks"
 msgstr "번호가 사전에 매겨진 수표 인쇄"
 
 #. module: account_check_printing
 #: model:ir.model,name:account_check_printing.model_account_register_payments
-msgid "Register payments on multiple invoices"
-msgstr "여러 청구서에서 결제 등록"
+msgid "Register Payments"
+msgstr "결제 등록"
 
 #. module: account_check_printing
-#: model:ir.model.fields,help:account_check_printing.field_account_journal_check_next_number
+#: model:ir.model.fields,field_description:account_check_printing.field_res_company__account_check_printing_margin_right
+msgid "Right Margin"
+msgstr "오른쪽 여백"
+
+#. module: account_check_printing
+#: model:ir.model.fields,help:account_check_printing.field_res_company__account_check_printing_layout
+#: model:ir.model.fields,help:account_check_printing.field_res_config_settings__account_check_printing_layout
+msgid ""
+"Select the format corresponding to the check paper you will be printing your checks on.\n"
+"In order to disable the printing feature, select 'None'."
+msgstr "수표 용지에 인쇄 할 형식을 선택하십시오. 인쇄 기능을 사용하지 않으려면 '없음'을 선택하십시오."
+
+#. module: account_check_printing
+#: model:ir.model.fields,help:account_check_printing.field_account_journal__check_next_number
 msgid "Sequence number of the next printed check."
 msgstr "다음에 인쇄된 수표의 일련 번호"
 
 #. module: account_check_printing
-#: model:ir.model.fields,help:account_check_printing.field_account_journal_check_printing_payment_method_selected
+#: model:ir.model.fields,help:account_check_printing.field_account_journal__check_printing_payment_method_selected
 msgid ""
 "Technical feature used to know whether check printing was enabled as payment"
 " method."
 msgstr "수표 인쇄가 수표로 사용 가능한지 확인하는 데 사용되는 기술 기능입니다."
+
+#. module: account_check_printing
+#: model:ir.model.fields,help:account_check_printing.field_res_config_settings__country_code
+msgid ""
+"The ISO country code in two chars. \n"
+"You can use this field for quick search."
+msgstr ""
+"두 개의 문자로 된 ISO 국가 코드.\n"
+"이 필드는 빠른 검색을 위해 사용할 수 있습니다."
 
 #. module: account_check_printing
 #: code:addons/account_check_printing/models/account_journal.py:26
@@ -249,35 +336,63 @@ msgid ""
 msgstr "마지막 수표 번호는 %s. 수표가 은행에서 거절된 경우 약간 큰 번호를 사용할 수 있습니다."
 
 #. module: account_check_printing
-#: model:ir.model.fields,help:account_check_printing.field_account_payment_check_number
+#: model:ir.model.fields,help:account_check_printing.field_account_payment__check_number
 msgid ""
 "The selected journal is configured to print check numbers. If your pre-"
 "printed check paper already has numbers or if the current numbering is "
 "wrong, you can change it in the journal configuration page."
 msgstr ""
-"선택한 분개장은 수표 번호를 인쇄하도록 구성되어 있습니다. 미리 인쇄된 수표에 이미 번호가 있거나 현재 번호가 잘못되어 있으면 저널 구성"
-" 페이지에서 수정할 수 있습니다."
+"선택한 분개장은 수표 번호를 인쇄하도록 구성되어 있습니다. 미리 인쇄된 수표에 이미 번호가 있거나 현재 번호가 잘못되어 있으면 분개장 "
+"구성 페이지에서 수정할 수 있습니다."
 
 #. module: account_check_printing
-#: code:addons/account_check_printing/models/account_payment.py:121
-#, python-format
+#: model:ir.model.fields,help:account_check_printing.field_res_company__account_check_printing_multi_stub
+#: model:ir.model.fields,help:account_check_printing.field_res_config_settings__account_check_printing_multi_stub
 msgid ""
-"There is no check layout configured.\n"
-"Make sure the proper check printing module is installed and its configuration (in company settings > 'Configuration' tab) is correct."
-msgstr ""
+"This option allows you to print check details (stub) on multiple pages if "
+"they don't fit on a single page."
+msgstr "이 옵션을 사용하면 여러 페이지가 한 페이지에 들어 가지 않는 경우 체크 세부 사항(스텁)을 인쇄 할 수 있습니다."
 
 #. module: account_check_printing
-#: model:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
+#: model:ir.model.fields,help:account_check_printing.field_res_company__account_check_printing_date_label
+#: model:ir.model.fields,help:account_check_printing.field_res_config_settings__account_check_printing_date_label
+msgid ""
+"This option allows you to print the date label on the check as per CPA. "
+"Disable this if your pre-printed check includes the date label."
+msgstr ""
+"이 옵션을 사용하면 CPA에 따라 수표에 날짜 라벨을 인쇄할 수 있습니다. 미리 인쇄된 수표에 날짜 라벨이 포함되어 있으면 이 기능을 "
+"사용하지 마십시오."
+
+#. module: account_check_printing
+#: model_terms:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
 msgid ""
 "This will allow to save on payments the number of the corresponding check."
 msgstr "이렇게 하면 지불 수표 금액을 절약 할 수 있습니다."
 
 #. module: account_check_printing
-#: model:ir.ui.view,arch_db:account_check_printing.view_account_payment_form_inherited
+#: model_terms:ir.ui.view,arch_db:account_check_printing.view_account_payment_form_inherited
 msgid "Unmark Sent"
 msgstr "전송 취소 표시"
 
 #. module: account_check_printing
-#: model:ir.model,name:account_check_printing.model_wizard_multi_charts_accounts
-msgid "wizard.multi.charts.accounts"
-msgstr "wizard.multi.charts.accounts"
+#: code:addons/account_check_printing/models/account_payment.py:116
+#, python-format
+msgid ""
+"You have to choose a check layout. For this, go in Apps, search for 'Checks "
+"layout' and install one."
+msgstr "수표 모양을 선택해야 합니다. 이렇게 하려면 앱으로 이동하여 '수표 모양'을 검색하여 설치하십시오."
+
+#. module: account_check_printing
+#: selection:res.company,account_check_printing_layout:0
+msgid "check in middle"
+msgstr "수표 중간"
+
+#. module: account_check_printing
+#: selection:res.company,account_check_printing_layout:0
+msgid "check on bottom"
+msgstr "수표 하단"
+
+#. module: account_check_printing
+#: selection:res.company,account_check_printing_layout:0
+msgid "check on top"
+msgstr "수표 상단"

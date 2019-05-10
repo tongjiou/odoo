@@ -3,17 +3,19 @@
 # * website_event_sale
 # 
 # Translators:
+# Martin Trigaux, 2018
+# Arma Gedonsky <armagedonsky@hot.ee>, 2018
 # Eneli Õigus <enelioigus@gmail.com>, 2018
 # Rivo Zängov <eraser@eraser.ee>, 2019
-# Martin Trigaux, 2019
+# Martin Aavastik <martin@avalah.ee>, 2019
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-29 09:08+0000\n"
-"PO-Revision-Date: 2017-09-20 10:26+0000\n"
-"Last-Translator: Martin Trigaux, 2019\n"
+"POT-Creation-Date: 2019-03-29 10:10+0000\n"
+"PO-Revision-Date: 2018-08-24 09:34+0000\n"
+"Last-Translator: Martin Aavastik <martin@avalah.ee>, 2019\n"
 "Language-Team: Estonian (https://www.transifex.com/odoo/teams/41243/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,17 +24,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.registration_template
+#: model_terms:ir.ui.view,arch_db:website_event_sale.registration_template
 msgid "<span>Free</span>"
 msgstr "<span>Vaba</span>"
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.registration_template
+#: model_terms:ir.ui.view,arch_db:website_event_sale.registration_template
 msgid "<span>Unlimited</span>"
 msgstr "<span>Piiramatult</span>"
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.registration_template
+#: model_terms:ir.ui.view,arch_db:website_event_sale.registration_template
 msgid "<span>left</span>"
 msgstr "<span>järgi</span>"
 
@@ -53,14 +55,24 @@ msgid ""
 msgstr ""
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.index
+#: model:ir.model.fields,field_description:website_event_sale.field_product_product__event_ticket_ids
+msgid "Event Tickets"
+msgstr ""
+
+#. module: website_event_sale
+#: model_terms:ir.ui.view,arch_db:website_event_sale.registration_complete_inherit_website_event_sale
+msgid "N/A"
+msgstr ""
+
+#. module: website_event_sale
+#: model_terms:ir.ui.view,arch_db:website_event_sale.index
 msgid "Only"
 msgstr "Ainult"
 
 #. module: website_event_sale
 #: model:ir.model,name:website_event_sale.model_product_pricelist_item
-msgid "Pricelist item"
-msgstr "Hinnakirja ese"
+msgid "Pricelist Item"
+msgstr "Pricelist Item"
 
 #. module: website_event_sale
 #: model:ir.model,name:website_event_sale.model_product_product
@@ -68,23 +80,28 @@ msgid "Product"
 msgstr "Toode"
 
 #. module: website_event_sale
-#: model:ir.model,name:website_event_sale.model_sale_order
-msgid "Quotation"
-msgstr "Pakkumine"
-
-#. module: website_event_sale
-#: code:addons/website_event_sale/controllers/main.py:56
+#: code:addons/website_event_sale/controllers/main.py:63
 #, python-format
 msgid "Registration"
 msgstr "Registreerimine"
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.index
+#: model_terms:ir.ui.view,arch_db:website_event_sale.index
 msgid "Remaining"
-msgstr "Järgi"
+msgstr "Remaining"
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.index
+#: model:ir.model,name:website_event_sale.model_sale_order
+msgid "Sale Order"
+msgstr "Müügitellimus"
+
+#. module: website_event_sale
+#: model:ir.model,name:website_event_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Müügitellimuse rida"
+
+#. module: website_event_sale
+#: model_terms:ir.ui.view,arch_db:website_event_sale.index
 msgid "Sold Out"
 msgstr "Välja müüdud"
 
@@ -107,6 +124,11 @@ msgstr ""
 #, python-format
 msgid "The ticket doesn't match with this product."
 msgstr "Pilet ei kattu selle tootega."
+
+#. module: website_event_sale
+#: model_terms:ir.ui.view,arch_db:website_event_sale.registration_complete_inherit_website_event_sale
+msgid "Ticket"
+msgstr "Pilet"
 
 #. module: website_event_sale
 #: code:addons/website_event_sale/models/product_pricelist.py:20

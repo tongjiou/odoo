@@ -3,16 +3,16 @@
 # * calendar_sms
 # 
 # Translators:
-# Martin Trigaux, 2017
-# hoxhe Aits <hoxhe0@gmail.com>, 2017
+# Ghaith Gammar <g.gammar@saharaifs.net>, 2018
+# Shaima Safar <shaima.safar@open-inside.com>, 2018
 # Mustafa Rawi <mustafa@cubexco.com>, 2019
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.saas~18+e\n"
+"Project-Id-Version: Odoo Server saas~11.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-20 11:33+0000\n"
-"PO-Revision-Date: 2017-09-20 11:39+0000\n"
+"POT-Creation-Date: 2018-09-21 13:17+0000\n"
+"PO-Revision-Date: 2018-08-24 09:17+0000\n"
 "Last-Translator: Mustafa Rawi <mustafa@cubexco.com>, 2019\n"
 "Language-Team: Arabic (https://www.transifex.com/odoo/teams/41243/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -22,20 +22,40 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #. module: calendar_sms
+#: selection:calendar.alarm,type:0
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#. module: calendar_sms
 #: model:ir.model,name:calendar_sms.model_calendar_event
 msgid "Event"
-msgstr "الحدث"
+msgstr "الفعالية"
 
 #. module: calendar_sms
 #: model:ir.model,name:calendar_sms.model_calendar_alarm
-msgid "Event alarm"
-msgstr "تنبيه الحدث"
+msgid "Event Alarm"
+msgstr "تنبيه الفعالية"
+
+#. module: calendar_sms
+#: model:ir.model,name:calendar_sms.model_calendar_alarm_manager
+msgid "Event Alarm Manager"
+msgstr "إدارة تنبيه الفعالية"
 
 #. module: calendar_sms
 #: code:addons/calendar_sms/models/calendar.py:23
 #, python-format
 msgid "Event reminder: %s on %s."
 msgstr "التذكير بالفعالية: %s في %s."
+
+#. module: calendar_sms
+#: selection:calendar.alarm,type:0
+msgid "Notification"
+msgstr "التنبيهات"
+
+#. module: calendar_sms
+#: selection:calendar.alarm,type:0
+msgid "SMS Text Message"
+msgstr "رسالة نصية قصيرة"
 
 #. module: calendar_sms
 #: code:addons/calendar_sms/models/calendar.py:24
@@ -49,6 +69,6 @@ msgid "Send SMS to attendees"
 msgstr "إرسال رسالة نصية قصيرة للحضور"
 
 #. module: calendar_sms
-#: model:ir.model,name:calendar_sms.model_calendar_alarm_manager
-msgid "calendar.alarm_manager"
-msgstr "calendar.alarm_manager"
+#: model:ir.model.fields,field_description:calendar_sms.field_calendar_alarm__type
+msgid "Type"
+msgstr "النوع"

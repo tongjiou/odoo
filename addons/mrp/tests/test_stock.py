@@ -28,7 +28,7 @@ class TestWarehouse(common.TestMrpCommon):
 
         self.laptop = self.env.ref("product.product_product_25")
         graphics_card = self.env.ref("product.product_product_24")
-        unit = self.env.ref("product.product_uom_unit")
+        unit = self.env.ref("uom.product_uom_unit")
         mrp_routing = self.env.ref("mrp.mrp_routing_0")
 
         bom_laptop = self.env['mrp.bom'].create({
@@ -55,7 +55,7 @@ class TestWarehouse(common.TestMrpCommon):
 
     def test_manufacturing_route(self):
         warehouse_1_stock_manager = self.warehouse_1.sudo(self.user_stock_manager)
-        manu_rule = self.env['procurement.rule'].search([
+        manu_rule = self.env['stock.rule'].search([
             ('action', '=', 'manufacture'),
             ('warehouse_id', '=', self.warehouse_1.id)])
         self.assertEqual(self.warehouse_1.manufacture_pull_id, manu_rule)
@@ -64,13 +64,13 @@ class TestWarehouse(common.TestMrpCommon):
         warehouse_1_stock_manager.write({
             'manufacture_to_resupply': False
         })
-        self.assertFalse(self.warehouse_1.manufacture_pull_id)
+        self.assertFalse(self.warehouse_1.manufacture_pull_id.active)
         self.assertFalse(self.warehouse_1.manu_type_id.active)
         self.assertNotIn(manu_route, warehouse_1_stock_manager._get_all_routes())
         warehouse_1_stock_manager.write({
             'manufacture_to_resupply': True
         })
-        manu_rule = self.env['procurement.rule'].search([
+        manu_rule = self.env['stock.rule'].search([
             ('action', '=', 'manufacture'),
             ('warehouse_id', '=', self.warehouse_1.id)])
         self.assertEqual(self.warehouse_1.manufacture_pull_id, manu_rule)
@@ -116,7 +116,8 @@ class TestWarehouse(common.TestMrpCommon):
                 (0, 0, {'product_id': self.product_2.id, 'product_uom_id': self.product_2.uom_id.id, 'product_qty': 12, 'prod_lot_id': lot_product_2.id, 'location_id': self.ref('stock.stock_location_14')})
             ]})
         (stock_inv_product_4 | stock_inv_product_2).action_start()
-        (stock_inv_product_4 | stock_inv_product_2).action_done()
+        stock_inv_product_2.action_validate()
+        stock_inv_product_4.action_validate()
 
         #Create Manufacturing order.
         production_3 = self.env['mrp.production'].create({
@@ -143,7 +144,7 @@ class TestWarehouse(common.TestMrpCommon):
 
         #Check scrap move is created for this production order.
         #TODO: should check with scrap objects link in between
-        
+
 #        scrap_move = production_3.move_raw_ids.filtered(lambda x: x.product_id == self.product_2 and x.scrapped)
 #        self.assertTrue(scrap_move, "There are no any scrap move created for production order.")
 

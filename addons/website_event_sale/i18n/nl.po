@@ -3,16 +3,16 @@
 # * website_event_sale
 # 
 # Translators:
-# Yenthe Van Ginneken <yenthespam@gmail.com>, 2017
+# Yenthe Van Ginneken <yenthespam@gmail.com>, 2018
 # Martin Trigaux, 2019
 # Erwin van der Ploeg <erwin@odooexperts.nl>, 2019
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-29 09:08+0000\n"
-"PO-Revision-Date: 2017-09-20 10:26+0000\n"
+"POT-Creation-Date: 2019-03-29 10:10+0000\n"
+"PO-Revision-Date: 2018-08-24 09:34+0000\n"
 "Last-Translator: Erwin van der Ploeg <erwin@odooexperts.nl>, 2019\n"
 "Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -22,17 +22,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.registration_template
+#: model_terms:ir.ui.view,arch_db:website_event_sale.registration_template
 msgid "<span>Free</span>"
 msgstr "<span>Gratis</span>"
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.registration_template
+#: model_terms:ir.ui.view,arch_db:website_event_sale.registration_template
 msgid "<span>Unlimited</span>"
 msgstr "<span>Onbeperkt</span>"
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.registration_template
+#: model_terms:ir.ui.view,arch_db:website_event_sale.registration_template
 msgid "<span>left</span>"
 msgstr "<span>links</span>"
 
@@ -43,8 +43,8 @@ msgid ""
 "A pricelist item with a positive min. quantity cannot be applied to this "
 "event tickets product."
 msgstr ""
-"Een prijslijstitem met een positieve min. hoeveelheid kan niet worden "
-"toegepast op dit evenementticket product."
+"Een prijslijstitem met een positieve min. hoeveelheid wordt niet toegepast "
+"op een evenementticket product."
 
 #. module: website_event_sale
 #: code:addons/website_event_sale/models/product_pricelist.py:13
@@ -54,16 +54,26 @@ msgid ""
 "event tickets products."
 msgstr ""
 "Een prijslijstitem met een positieve min. hoeveelheid wordt niet toegepast "
-"op de producten van evenementtickets."
+"op de evenementticket producten."
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.index
+#: model:ir.model.fields,field_description:website_event_sale.field_product_product__event_ticket_ids
+msgid "Event Tickets"
+msgstr "Evenement tickets"
+
+#. module: website_event_sale
+#: model_terms:ir.ui.view,arch_db:website_event_sale.registration_complete_inherit_website_event_sale
+msgid "N/A"
+msgstr "N/B"
+
+#. module: website_event_sale
+#: model_terms:ir.ui.view,arch_db:website_event_sale.index
 msgid "Only"
 msgstr "Alleen"
 
 #. module: website_event_sale
 #: model:ir.model,name:website_event_sale.model_product_pricelist_item
-msgid "Pricelist item"
+msgid "Pricelist Item"
 msgstr "Prijslijst item"
 
 #. module: website_event_sale
@@ -72,23 +82,28 @@ msgid "Product"
 msgstr "Product"
 
 #. module: website_event_sale
-#: model:ir.model,name:website_event_sale.model_sale_order
-msgid "Quotation"
-msgstr "Offerte"
-
-#. module: website_event_sale
-#: code:addons/website_event_sale/controllers/main.py:56
+#: code:addons/website_event_sale/controllers/main.py:63
 #, python-format
 msgid "Registration"
-msgstr "Registratie"
+msgstr "Inschrijving"
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.index
+#: model_terms:ir.ui.view,arch_db:website_event_sale.index
 msgid "Remaining"
 msgstr "Resterend"
 
 #. module: website_event_sale
-#: model:ir.ui.view,arch_db:website_event_sale.index
+#: model:ir.model,name:website_event_sale.model_sale_order
+msgid "Sale Order"
+msgstr "Verkooporder"
+
+#. module: website_event_sale
+#: model:ir.model,name:website_event_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Verkooporderregel"
+
+#. module: website_event_sale
+#: model_terms:ir.ui.view,arch_db:website_event_sale.index
 msgid "Sold Out"
 msgstr "Uitverkocht"
 
@@ -114,6 +129,11 @@ msgstr ""
 #, python-format
 msgid "The ticket doesn't match with this product."
 msgstr "Het ticket komt niet overeen met dit product."
+
+#. module: website_event_sale
+#: model_terms:ir.ui.view,arch_db:website_event_sale.registration_complete_inherit_website_event_sale
+msgid "Ticket"
+msgstr "Ticket"
 
 #. module: website_event_sale
 #: code:addons/website_event_sale/models/product_pricelist.py:20

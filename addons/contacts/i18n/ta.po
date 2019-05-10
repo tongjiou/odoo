@@ -3,14 +3,15 @@
 # * contacts
 # 
 # Translators:
+# Bagavathikumar Ramakrishnan <bagavathikumar@gmail.com>, 2019
 # Alagappan Karthikeyan <me@karthik.sg>, 2019
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.saas~18\n"
+"Project-Id-Version: Odoo Server saas~11.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-20 09:53+0000\n"
-"PO-Revision-Date: 2017-09-20 10:16+0000\n"
+"POT-Creation-Date: 2018-09-18 09:49+0000\n"
+"PO-Revision-Date: 2018-08-24 09:17+0000\n"
 "Last-Translator: Alagappan Karthikeyan <me@karthik.sg>, 2019\n"
 "Language-Team: Tamil (https://www.transifex.com/odoo/teams/41243/ta/)\n"
 "MIME-Version: 1.0\n"
@@ -31,14 +32,9 @@ msgid "Banks"
 msgstr "வங்கிகள்"
 
 #. module: contacts
-#: model:ir.actions.act_window,help:contacts.action_contacts
-msgid "Click to add a contact in your contacts directory."
-msgstr ""
-
-#. module: contacts
 #: model:ir.ui.menu,name:contacts.res_partner_menu_config
 msgid "Configuration"
-msgstr ""
+msgstr "கட்டமைப்பு"
 
 #. module: contacts
 #: model:ir.ui.menu,name:contacts.menu_partner_category_form
@@ -52,10 +48,11 @@ msgstr "தலைப்புகள் தொடர்பு கொள்ளவ�
 
 #. module: contacts
 #: model:ir.actions.act_window,name:contacts.action_contacts
+#: model:ir.actions.act_window,name:contacts.action_contacts_summary
 #: model:ir.ui.menu,name:contacts.menu_contacts
 #: model:ir.ui.menu,name:contacts.res_partner_menu_contacts
 msgid "Contacts"
-msgstr ""
+msgstr "தொடர்புகள்"
 
 #. module: contacts
 #: model:ir.ui.menu,name:contacts.menu_country_partner
@@ -68,6 +65,12 @@ msgid "Country Group"
 msgstr "நாடு குழு"
 
 #. module: contacts
+#: model_terms:ir.actions.act_window,help:contacts.action_contacts
+#: model_terms:ir.actions.act_window,help:contacts.action_contacts_summary
+msgid "Create a contact in your address book"
+msgstr "உங்கள் முகவரி புத்தகத்தில் ஒரு தொடர்பை உருவாக்கவும்"
+
+#. module: contacts
 #: model:ir.ui.menu,name:contacts.menu_country_state_partner
 msgid "Fed. States"
 msgstr "ஃபெட். மாநிலங்களில்"
@@ -78,14 +81,19 @@ msgid "Localization"
 msgstr "மொழிப்பெயர்ப்பு"
 
 #. module: contacts
-#: model:ir.actions.act_window,help:contacts.action_contacts
-msgid ""
-"Odoo helps you easily track all activities related to\n"
-"            a customer: discussions, history of business opportunities,\n"
-"            documents, etc."
+#: model_terms:ir.actions.act_window,help:contacts.action_contacts
+#: model_terms:ir.actions.act_window,help:contacts.action_contacts_summary
+msgid "Odoo helps you to easily track all activities related to a customer."
 msgstr ""
+"ஒரு வாடிக்கையாளருடன் தொடர்புடைய அனைத்து நடவடிக்கைகளையும் எளிதில் கண்காணிக்க "
+"உதவுகிறது."
 
 #. module: contacts
 #: model:ir.ui.menu,name:contacts.res_partner_industry_menu
 msgid "Sectors of Activity"
 msgstr "செயல்பாட்டின் பிரிவுகள்"
+
+#. module: contacts
+#: model:ir.model,name:contacts.model_res_users
+msgid "Users"
+msgstr "பயனர்கள்"

@@ -110,6 +110,7 @@ td {
 }
 
 .pos {
+    direction: ltr;
     padding: 0;
     margin: 0;
     background-color: #f0eeee;
@@ -730,7 +731,7 @@ td {
     border-top-right-radius: 4px;
 }
 .pos .numpad button {
-    float: left;
+    float: left/*rtl:ignore*/; /* rtlcss forced to keep ltr */
     height: 54px;
     width: 54px;
     font-weight: bold;
@@ -1433,6 +1434,7 @@ td {
 .pos .pos-receipt-container {
     font-size: 0.75em;
     text-align: center;
+    direction: ltr;
 }
 
 .pos .pos-sale-ticket {
@@ -2149,6 +2151,22 @@ td {
     font-family: 'Lato';
     font-family: Lato;
 }
+
+.pos .modal-dialog .popup-textinput{
+    display: flex;
+    flex-direction: column;
+}
+
+.pos .modal-dialog .popup-textinput .title,
+.pos .modal-dialog .popup-textinput .footer{
+    flex: none;
+}
+
+.pos .modal-dialog .popup-textinput textarea{
+    resize: none;
+    flex: auto;
+    margin: 0 20px 80px;
+}
 .pos .modal-dialog .popup-confirm{
     height: 250px;
 }
@@ -2332,6 +2350,7 @@ td {
     margin-right: 3px;
 }
 .pos .popup-numpad {
+    direction: ltr/*rtl:ignore*/; /* rtlcss forced to keep ltr */
     margin: 12px auto;
     text-align: center;
     width: 254px;
